@@ -41,10 +41,13 @@ Create a recipe with the following:
     include_recipe 'chef_handler::default'
     
     # Install the `chef-handler-slnky` RubyGem during the compile phase
+    # the server that it sends the message to is managed with:
+    # `node['slnky']['url']`
+    # set this in a recipe or attributes file to point the handler
+    # to the server
     chef_gem "chef-handler-slnky" do
       action :upgrade
     end
-    node.set['slnky']['url'] = 'http://127.0.0.1:3000/'
     
     # Then activate the handler with the `chef_handler` LWRP
     chef_handler "Chef::Handler::SlnkyHandler" do
