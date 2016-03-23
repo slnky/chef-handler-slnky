@@ -7,13 +7,16 @@ class Chef
     class Slnky < Chef::Handler
 
       def report
-        title = Chef::Config[:solo] ? "Chef Solo" : "Chef Client"
-        text = if run_status.success?
-                 "Chef complete on #{node.name} in #{run_status.elapsed_time}"
-               else
-                 "Chef failed on #{node.name} with #{run_status.exception}"
-               end
-
+        event = "chef.run.#{run_status.success? ? 'success' : 'failure'}"
+        server = node['slnky']['url']
+        data = {
+            name: event,
+            elapsed: run_status.elapsed_time,
+            exception: run_status.exception,
+            updated: run_status.updated_resources,
+        }
+        msg = Slnky::Message.new(data)
+        Slnky.notify(msg, server)
       end
     end
   end

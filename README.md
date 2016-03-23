@@ -40,6 +40,7 @@ Create a recipe with the following:
 
     # Install the `chef-handler-slnky` RubyGem during the compile phase
     chef_gem "chef-handler-slnky"
+    node.set['slnky']['url']
 
     # Then activate the handler with the `chef_handler` LWRP
     chef_handler "Chef::Handler::Slnky" do
