@@ -11,6 +11,7 @@ class Chef
         server = node['slnky']['url']
         data = {
             name: event,
+            node: node.name,
             elapsed: run_status.elapsed_time,
             exception: run_status.exception,
             updated: run_status.updated_resources.count,
