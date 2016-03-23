@@ -1,6 +1,7 @@
 require "chef/handler/slnky/version"
 require 'chef/handler'
 require 'slnky'
+require 'yaml'
 
 class Chef
   class Handler
@@ -9,9 +10,12 @@ class Chef
       def report
         event = "chef.run.#{run_status.success? ? 'success' : 'failure'}"
         server = node['slnky']['url']
+        file = node['slnky']['yaml']
+        attrs = file && File.exists?(file) ? YAML.load_file(file) : {}
         data = {
             name: event,
             node: node.name,
+            attributes: attrs,
             elapsed: run_status.elapsed_time,
             exception: run_status.exception,
             updated: run_status.updated_resources.count,

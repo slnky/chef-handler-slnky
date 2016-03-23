@@ -45,6 +45,8 @@ Create a recipe with the following:
     # `node['slnky']['url']`
     # set this in a recipe or attributes file to point the handler
     # to the server
+    # if you set `node['slnky']['file']` to the location of a yaml file
+    # it will load the data and include it in the event in the `attributes` key
     chef_gem "chef-handler-slnky" do
       action :upgrade
     end
