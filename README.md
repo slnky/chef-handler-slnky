@@ -29,8 +29,8 @@ Then add to the configuration (`/etc/chef/solo.rb` for chef-solo or
 `/etc/chef/client.rb` for chef-client):
 
     require "chef/handler/slnky"
-    report_handlers << Chef::Handler::Slnky.new
-    exception_handlers << Chef::Handler::Slnky.new
+    report_handlers << Chef::Handler::SlnkyHandler.new
+    exception_handlers << Chef::Handler::SlnkyHandler.new
 
 ### Method 2
 
@@ -43,7 +43,7 @@ Create a recipe with the following:
     node.set['slnky']['url']
 
     # Then activate the handler with the `chef_handler` LWRP
-    chef_handler "Chef::Handler::Slnky" do
+    chef_handler "Chef::Handler::SlnkyHandler" do
       source "chef/handler/slnky"
       action :enable
     end

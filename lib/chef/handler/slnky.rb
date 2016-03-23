@@ -4,7 +4,7 @@ require 'slnky'
 
 class Chef
   class Handler
-    class Slnky < Chef::Handler
+    class SlnkyHandler < Chef::Handler
 
       def report
         event = "chef.run.#{run_status.success? ? 'success' : 'failure'}"
