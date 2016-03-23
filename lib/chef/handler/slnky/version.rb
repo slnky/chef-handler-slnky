@@ -1,7 +1,7 @@
-module Chef
-  module Handler
-    module Slnky
-      VERSION = "0.1.0"
+class Chef
+  class Handler
+    class Slnky
+      VERSION = "0.1.1"
     end
   end
 end
