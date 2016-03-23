@@ -15,8 +15,8 @@ class Chef
             exception: run_status.exception,
             updated: run_status.updated_resources,
         }
-        msg = Slnky::Message.new(data)
-        Slnky.notify(msg, server)
+        msg = ::Slnky::Message.new(data)
+        ::Slnky.notify(msg, server)
       end
     end
   end

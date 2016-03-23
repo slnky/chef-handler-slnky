@@ -38,10 +38,14 @@ Use the
 [chef_handler cookbook by Opscode](http://community.opscode.com/cookbooks/chef_handler).
 Create a recipe with the following:
 
+    include_recipe 'chef_handler::default'
+    
     # Install the `chef-handler-slnky` RubyGem during the compile phase
-    chef_gem "chef-handler-slnky"
-    node.set['slnky']['url']
-
+    chef_gem "chef-handler-slnky" do
+      action :upgrade
+    end
+    node.set['slnky']['url'] = 'http://127.0.0.1:3000/'
+    
     # Then activate the handler with the `chef_handler` LWRP
     chef_handler "Chef::Handler::SlnkyHandler" do
       source "chef/handler/slnky"
